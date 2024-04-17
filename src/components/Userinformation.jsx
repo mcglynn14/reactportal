@@ -1,8 +1,7 @@
-// UserInformation.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const UserInformation = () => {
+const Userinformation = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const fetchUserData = async () => {
@@ -12,7 +11,7 @@ const UserInformation = () => {
           console.error('No token found');
           return;
         }
-        const response = await axios.get('http://localhost:5000/api/users', {
+        const response = await axios.get('http://localhost:5001/api/users', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -24,6 +23,9 @@ const UserInformation = () => {
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
+        if (error.response) {
+          console.error('Server responded with:', error.response.data);
+        }
       }
     };
 
@@ -33,7 +35,10 @@ const UserInformation = () => {
   return user;
 };
 
-export default UserInformation;
+export default Userinformation;
+
+
+
 
 
 

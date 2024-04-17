@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav';
 import Hero from '../../components/Hero';
 import Userinformation from '../../components/Userinformation';
+import './mathquiz.css';
 
 const Mathquiz = () => {
     const userData = Userinformation();  
-    const [userDOB, setUserDOB] = useState(userData.dob);
-    const [isLoading, setIsLoading] = useState(false); // No need to set loading initially to true
+    const userDOB = userData ? userData.dob : null; // Add conditional check here
+    const [isLoading, setIsLoading] = useState(false);
     const [quiz, setQuiz] = useState([]);
     const [answers, setAnswers] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
@@ -15,9 +16,8 @@ const Mathquiz = () => {
     const [score, setScore] = useState(0);
 
     useEffect(() => {
-        setIsLoading(true); // Set loading to true when component mounts
+        setIsLoading(true);
 
-        // Fetch user data
         const fetchUserData = async () => {
             try {
                 const token = localStorage.getItem('token');
@@ -33,10 +33,10 @@ const Mathquiz = () => {
                 const userData = await response.json();
                 console.log('Fetched user data:', userData);
                 setUserDOB(userData.dob);
-                setIsLoading(false); // Set loading to false after fetching user data
+                setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching user data:', error);
-                setIsLoading(false); // Set loading to false in case of error
+                setIsLoading(false);
             }
         };
 

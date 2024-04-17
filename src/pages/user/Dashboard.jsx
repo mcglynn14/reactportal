@@ -26,11 +26,11 @@
 //         <>
 //             {user && (
 //                 <section className='h-full bg-black flex flex-col items-center justify-center'>
-//                 <Avatar
+//                 {/* <Avatar
 //                     name={user.forename}
 //                     message={user.notes}     
 //                 >
-//                 </Avatar>
+//                 </Avatar> */}
 //                     <div className="bg-black w-full text-white">
 //                         <div className="container mx-auto flex flex-col md:flex-row items-center">
 //                             <div className="flex flex-col w-full justify-center items-start p-8">

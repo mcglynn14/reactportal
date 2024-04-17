@@ -7,16 +7,14 @@ require('dotenv').config();
 const User = require('./models/User');
 require('./models/Department');
 
-
 const app = express();
 const PORT = process.env.PORT || 5001;
-
 
 app.use(express.json());
 app.use(cors());
 
 // MongoDB connection
-const MONGO_URI = process.env.MONGO_URI
+const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -26,7 +24,7 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB');
 });
 
-
+// Route handler for fetching user data
 app.get('/api/users', async (req, res) => {
   try {
     // Extract the token from the request headers
@@ -50,39 +48,33 @@ app.get('/api/users', async (req, res) => {
       }
 
       // Return data only for the authenticated user
-    // Inside the /api/users route
-const formattedUser = {
-  _id: user._id,
-  email: user.email,
-  forename: user.forename,
-  surname: user.surname,
-  guardian: user.guardian, // Add this line
-  guardian_name: user.guardian_name,
-  notes: user.notes, 
-  dob: user.dob,
-  patient_number: user.patient_number,
-  appointment_date: user.appointment_date,
-  appointment_notes: user.appointment_notes,
-  department_id: user.department_id ? {
-    name: user.department_id.name,
-    details: user.department_id.details,
-    consultant: user.department_id.consultant,
-    nurse: user.department_id.nurse,
-    consultant_img: user.department_id.consultant_img,
-    nurse_img: user.department_id.nurse_img,
-    img_one: user.department_id.img_one,
-    img_two: user.department_id.img_two,
-    img_three: user.department_id.img_three,
-    map: user.department_id.map,
-    // Add other department fields as needed
-  } : null,
-  
-  
-  // Add any additional fields you want to include
-};
+      const formattedUser = {
+        _id: user._id,
+        email: user.email,
+        forename: user.forename,
+        surname: user.surname,
+        guardian: user.guardian, // Add this line
+        guardian_name: user.guardian_name,
+        notes: user.notes, 
+        dob: user.dob,
+        patient_number: user.patient_number,
+        appointment_date: user.appointment_date,
+        appointment_notes: user.appointment_notes,
+        department_id: user.department_id ? {
+          name: user.department_id.name,
+          details: user.department_id.details,
+          consultant: user.department_id.consultant,
+          nurse: user.department_id.nurse,
+          consultant_img: user.department_id.consultant_img,
+          nurse_img: user.department_id.nurse_img,
+          img_one: user.department_id.img_one,
+          map: user.department_id.map,
+          // Add other department fields as needed
+        } : null,
+        // Add any additional fields you want to include
+      };
 
-res.json(formattedUser);
-
+      res.json(formattedUser);
     });
   } catch (error) {
     console.error(error);
@@ -90,7 +82,7 @@ res.json(formattedUser);
   }
 });
 
-// patient login
+// Route handler for user login
 app.post('/api/login', async (req, res) => {
   try {
     const { patient_number, password } = req.body;
@@ -122,8 +114,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-
-
+// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

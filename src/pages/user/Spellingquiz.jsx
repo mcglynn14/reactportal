@@ -2,54 +2,93 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav';
 import Hero from '../../components/Hero';
+import Userinformation from '../../components/Userinformation';
 import './spellingquiz.css';
 
 const Spellingquiz = () => {
+    const userData = Userinformation();  
+    const calculateAge = (dob) => {
+        if (!dob) return null;
+        const birthDate = new Date(dob);
+        const today = new Date();
+        const userAge = today.getFullYear() - birthDate.getFullYear();
+        return userAge;
+    };
+
+    const userAge = userData ? calculateAge(userData.dob) : null; // Add conditional check here
+    const [isLoading, setIsLoading] = useState(false);
     const [quiz, setQuiz] = useState([]);
-    // Define other state variables
     const [answers, setAnswers] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
 
     useEffect(() => {
-        let newQuiz = [];
-        const userAge = 10; // assuming you have userAge defined somewhere
+        setIsLoading(true);
 
-        if (userAge < 10) {
-            newQuiz = [
-                ["Q1: Spell the word cat?", "cat"],
-                ["Q2: Can you spell dog?", "dog"],
-                ["Q3: Spell the word sun?", "sun"],
-                ["Q4: How do you spell ball?", "ball"],
-                ["Q5: Spell the word tree?", "tree"],
-                ["Q6: Can you spell fish correctly?", "fish"],
-                ["Q7: Spell the word bird?", "bird"],
-                ["Q8: How do you spell flower?", "flower"],
-                ["Q9: Spell the word house?", "house"],
-                ["Q10: Can you spell car correctly?", "car"]
-            ];
-        } else {
-            newQuiz = [
-                ["Q1: Spell the word necessary?", "necessary"],
-                ["Q2: How do you spell the word accommodate?", "accommodate"],
-                ["Q3: Can you spell the word separate correctly?", "separate"],
-                ["Q4: Spell the word entrepreneur?", "entrepreneur"],
-                ["Q5: How do you spell the word liaison?", "liaison"],
-                ["Q6: Can you spell the word conscientious correctly?", "conscientious"],
-                ["Q7: Spell the word embarrassment?", "embarrassment"],
-                ["Q8: How do you spell the word privilege?", "privilege"],
-                ["Q9: Can you spell the word fluorescent correctly?", "fluorescent"],
-                ["Q10: Spell the word maintenance?", "maintenance"]
-            ];
-        }
+        const fetchUserData = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    console.error('No token found');
+                    return;
+                }
+                const response = await fetch('/api/users', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const userData = await response.json();
+                console.log('Fetched user data:', userData);
+                setIsLoading(false);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setIsLoading(false);
+            }
+        };
 
-        setQuiz(newQuiz);
-        setAnswers(Array(newQuiz.length).fill(''));
-        setFeedbacks(Array(newQuiz.length).fill(''));
-        setShowScore(false);
-        setScore(0);
+        fetchUserData();
     }, []);
+
+    useEffect(() => {
+        let newQuiz = [];
+
+        if (userAge !== null) {
+            if (userAge < 10) {
+                newQuiz = [
+                    ["Q1: Spell the word cat?", "cat"],
+                    ["Q2: Can you spell dog?", "dog"],
+                    ["Q3: Spell the word sun?", "sun"],
+                    ["Q4: How do you spell ball?", "ball"],
+                    ["Q5: Spell the word tree?", "tree"],
+                    ["Q6: Can you spell fish correctly?", "fish"],
+                    ["Q7: Spell the word bird?", "bird"],
+                    ["Q8: How do you spell flower?", "flower"],
+                    ["Q9: Spell the word house?", "house"],
+                    ["Q10: Can you spell car correctly?", "car"]
+                ];
+            } else {
+                newQuiz = [
+                    ["Q1: Spell the word necessary?", "necessary"],
+                    ["Q2: How do you spell the word accommodate?", "accommodate"],
+                    ["Q3: Can you spell the word separate correctly?", "separate"],
+                    ["Q4: Spell the word entrepreneur?", "entrepreneur"],
+                    ["Q5: How do you spell the word liaison?", "liaison"],
+                    ["Q6: Can you spell the word conscientious correctly?", "conscientious"],
+                    ["Q7: Spell the word embarrassment?", "embarrassment"],
+                    ["Q8: How do you spell the word privilege?", "privilege"],
+                    ["Q9: Can you spell the word fluorescent correctly?", "fluorescent"],
+                    ["Q10: Spell the word maintenance?", "maintenance"]
+                ];
+            }
+
+            setQuiz(newQuiz);
+            setAnswers(Array(newQuiz.length).fill(''));
+            setFeedbacks(Array(newQuiz.length).fill(''));
+            setShowScore(false);
+            setScore(0);
+        }
+    }, [userAge]);
 
     const handleInputChange = (index, event) => {
         const newAnswers = [...answers];
@@ -71,6 +110,10 @@ const Spellingquiz = () => {
         setShowScore(true);
         setScore(newScore);
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <>
