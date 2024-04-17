@@ -3,9 +3,12 @@ import Nav from '../../components/Nav';
 import Hero from '../../components/Hero';
 import Gcwhicon from '../../components/Gcwhicon';
 import Footer from '../../components/Footer';
+import Userinformation from '../../components/Userinformation';
 
 const Hospitalinfo = () => {
-  const userAge = 14;
+  const userData = Userinformation();  
+  const userDOB = userData ? userData.dob : null;
+  const [isLoading, setIsLoading] = useState(false);
   const [xrayDepartment, setXrayDepartment] = useState('');
   const [mriDepartment, setMriDepartment] = useState('');
   const [clinics, setClinics] = useState('');
@@ -15,6 +18,27 @@ const Hospitalinfo = () => {
   const [childrensWingMap, setChildrensWingMap] = useState('');
 
   useEffect(() => {
+    setIsLoading(true);
+
+    if (!userDOB) {
+      // console.error('User date of birth not available');
+      setIsLoading(false);
+      return;
+    }
+
+    const calculateAge = (dob) => {
+      const today = new Date();
+      const birthDate = new Date(dob);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const month = today.getMonth() - birthDate.getMonth();
+      if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    };
+
+    const userAge = calculateAge(userDOB);
+
     if (userAge >= 14 && userAge <= 18) {
       setXrayDepartment("X-ray Department: Our X-ray department is equipped with advanced imaging technology to provide precise diagnostic images for a wide range of medical conditions. From routine X-rays to more specialized imaging procedures, our experienced radiology team ensures accurate and timely results to aid in diagnosis and treatment planning.");
       setMriDepartment("MRI Department: Our state-of-the-art MRI department is equipped with the latest technology to provide accurate diagnostic imaging. Our experienced radiologists ensure that patients receive the best care and attention during their scans.");
@@ -38,10 +62,12 @@ const Hospitalinfo = () => {
       setWards("Wards: Our hospital has cozy rooms just for kids like you, where you can rest and feel better if you're sick or need a little operation. We'll make sure you have everything you need to feel happy and safe.");
       setPlayAreas("Play Areas: We know that being in the hospital can be a little scary, so we have super fun play areas with toys and games to make you smile and laugh. Our friendly staff are here to play with you and make you feel at home.");
       setSurgicalTheatres("Surgical Theatres: Our special surgery rooms are like the stage for a brave superhero adventure! Our amazing doctors and nurses use special tools to fix things inside your body and help you feel strong and healthy again.");
-setChildrensWingMap("Children's Wing Map: For our little friends aged 2 to 6, we have a special map to help you find all the fun places in our children's wing, like the play areas and special rooms. It's like a treasure map to make your visit even more exciting!");
+      setChildrensWingMap("Children's Wing Map: For our little friends aged 2 to 6, we have a special map to help you find all the fun places in our children's wing, like the play areas and special rooms. It's like a treasure map to make your visit even more exciting!");
 
     }
-  }, [userAge]);
+
+    setIsLoading(false);
+  }, [userDOB]);
 
   return (
     <>
