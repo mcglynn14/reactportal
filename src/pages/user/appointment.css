@@ -1,0 +1,9 @@
+.appointment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.department-btn{
+    width: 100%;
+}

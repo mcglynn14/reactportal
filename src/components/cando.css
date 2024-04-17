@@ -1,0 +1,13 @@
+.home-cando{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.home-candotitle{
+    font-family: 'Figtree', sans-serif;
+    color: #000;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+}

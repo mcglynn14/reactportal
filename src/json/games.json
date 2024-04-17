@@ -1,0 +1,38 @@
+[
+    {
+        "image": "/assets/img/gameimg.jpg",
+        "url": "https://www.cartoonnetwork.co.uk/games/cartoon-network-crazy-golf/play",
+        "name": "Crazy golf",
+        "description": "Play Crazy golf with your favourite characters from Cartoon Network."
+    },
+    {
+        "image": "/assets/img/gameimg.jpg",
+        "url": "/mathquiz",
+        "name": "Math quiz",
+        "description": "Test your math skills with this quiz."
+    },
+    {
+        "image": "/assets/img/gameimg.jpg",
+        "url": "/spellingquiz",
+        "name": "Spelling quiz",
+        "description": "Test your spelling skills with this quiz."
+    },
+    {
+        "image": "/assets/img/gameimg.jpg",
+        "url": "/tictactoe",
+        "name": "Tic Tac Toe",
+        "description": "Play Tic Tac Toe with a family member or friend."
+    },
+    {
+        "image": "/assets/img/gameimg.jpg",
+        "url": "https://www.cartoonnetwork.co.uk/games/teen-titans-go-battle-with-numbers/play",
+        "name": "Battle with numbers",
+        "description": "Help the Teen Titans battle with numbers."
+    },
+    {
+        "image": "/assets/img/gameimg.jpg",
+        "url": "https://www.cartoonnetwork.co.uk/games/gumball-pizza-frenzy/play",
+        "name": "Pizza frenzy",
+        "description": "Help Gumball and Darwin deliver pizzas."
+    }
+]

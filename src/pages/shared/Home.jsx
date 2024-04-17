@@ -1,16 +1,23 @@
-import './home.css';
 import React from 'react';
+import './home.css';
+import '../../index.css';
+import Hero from '../../components/Hero';
+import Nav from '../../components/Nav';
+import Cando from '../../components/Cando';
+import Gcwhicon from '../../components/Gcwhicon';
+import Footer from '../../components/Footer';
 
 const Home = () => {
 
   return (
     <>
-      <section className="home-topsection">
-        <h1 className="home-title">Welcome to Glasgow <br></br> Children's Wellness<br></br> Hospital</h1>
-      </section>
-      <section className="home-aboutsection">
-        <h2 className="about-title">About us</h2>
-      </section>
+      <header className="bg-white border-b-2 border-ctc-black">
+        <Nav />
+      </header>
+      <Hero title="Welcome to Glasgow Children's Wellness Hospital"/>
+      <Cando />
+      <Gcwhicon />
+      <Footer />
     </>
   )
 }

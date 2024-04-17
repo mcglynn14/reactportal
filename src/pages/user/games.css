@@ -1,0 +1,29 @@
+.game-cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 55px;
+    padding-top: 30px;
+    margin-bottom: 25px;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .game-cards{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-top: 30px;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    .game-cards{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-top: 30px;
+    }
+}

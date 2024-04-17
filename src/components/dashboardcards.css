@@ -1,0 +1,29 @@
+.dashboard-cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 55px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+.dashboard-card{
+    border: 2px solid #000;
+    border-radius: 26px;
+    width: 227px;
+    height: 281px;
+    transition: 0.5s ease-in-out;
+}
+.dashboard-card:hover{
+    box-shadow: 0 4px 8px #1c1b1be0;
+    transform: scale(1.1);
+}
+.card-img{
+    display: flex;
+    align-items: center;
+    margin: 40px auto 15px;
+}
+.card-text{
+    text-align: center;
+    color: #fff;
+}

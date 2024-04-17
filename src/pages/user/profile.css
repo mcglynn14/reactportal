@@ -1,0 +1,35 @@
+.profile-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.img-div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.profile-img{
+    margin: 20px auto;
+    border-radius: 50%;
+}
+.uploadprofile-btn{
+    text-align: center;
+    width: 65%;
+    margin: 20px auto;
+}
+.profile-input{
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .uploadprofile-btn{
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    .uploadprofile-btn{
+        width: 25%;
+    }
+}

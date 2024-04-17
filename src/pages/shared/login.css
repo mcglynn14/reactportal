@@ -4,27 +4,42 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
 }
 .login-form{
     box-shadow: 0 4px 8px #000000ac;
-    width: 30%;
+    width: 80%;
     padding: 30px 0;
 }
 .title{
     color: #000;
     font-family: 'Figtree', sans-serif;
 }
+.username-label{
+    text-align: center;
+    margin-bottom: 10px;
+}
 .login-input{
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
 }
+.password-label{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.parent-checker{
+    margin: 0 auto 20px auto;
+}
+.checkbox{
+    margin-right: 8px;
+}
 .btn{
-    background-color: #613F75!important; 
+    background-color: #9C27B0!important; 
     padding: 7px 10px;
     color: #fff;
     font-weight: bold;
     width: 50%;
+    border: 2px solid #9C27B0;
     margin: 0 auto;
     font-family: sans-serif;
     border-radius: 20px;
@@ -32,7 +47,8 @@
 }
 .btn:hover{
     background-color: transparent!important;
-    color: #613F75;
+    color: #9C27B0;
+    border: 2px solid #9C27B0;
     transform: scale(1.1);
 }
 .forgot-password{

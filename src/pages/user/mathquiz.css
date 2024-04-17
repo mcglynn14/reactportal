@@ -1,0 +1,65 @@
+.mathquizes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.quizlabel{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.quizinput{
+    border: 2px solid #000;
+}
+.quiz-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.submit-button{
+    margin: 40px 0;
+    background-color: #9C27B0;
+    color: white;
+    border: 2px solid #9C27B0;
+    cursor: pointer;
+}
+.home-link{
+    margin: 40px 0;
+    background-color: #9C27B0;
+    color: white;
+    border: 2px solid #9C27B0;
+    text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .submit-button{
+        background-color: #9C27B0;
+        color: white;
+        border: none;
+        width: 25%;
+        cursor: pointer;
+    }
+    .home-link{
+        background-color: #9C27B0;
+        color: white;
+        width: 25%;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    .submit-button{
+        background-color: #9C27B0;
+        color: white;
+        width: 20%;
+        cursor: pointer;
+    }
+    .home-link{
+        background-color: #9C27B0;
+        color: white;
+        width: 20%;
+        cursor: pointer;
+    }
+}

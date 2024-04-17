@@ -1,0 +1,13 @@
+footer{
+    border-top: 2px solid #000;
+    padding: 50px 0;
+    margin: 0 auto;
+}
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.copyright p{
+    font-size: 1.3rem;
+}

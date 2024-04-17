@@ -1,0 +1,87 @@
+.headerinner{
+    display: flex;
+    align-items: center;
+    gap: 65px;
+}
+.navbartoggle{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 2rem;
+    /* width: 9%; */
+    height: 10%;
+    border-radius: 30px;
+    padding: 14px 30px;
+}
+.navbartoggle svg.bars{
+    color: #000;
+    display: block;
+    font-size: 2rem;
+}
+.navbartoggle svg.x{
+    color: #000;
+    display: none;
+}
+.navbartoggle svg.open-toggle{
+    display: none;
+}
+.navbartoggle svg.close-toggle{
+    display: inline;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ul-links{
+    display: none;
+    list-style: none;
+}
+.logo img{
+    width: 155px;
+    height: 85px;
+}
+.active{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+    color: #000;
+    font-family: sans-serif;
+}
+img{
+    width: 75%;
+    margin: 12px 0 0 12px;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+    .container{
+        padding: 0 75px;
+    }
+    .headerinner{
+        gap: 64%;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    header{
+        display: flex;
+        gap: 300px;
+    }
+    .container{
+        display: inherit;
+        gap: 230px;
+    }
+    .ul-links{
+        display: flex;
+        flex-direction: row;
+        font-family: sans-serif;
+        border-bottom: 0;
+    }
+    .navbartoggle{
+        display: none;
+    }
+}

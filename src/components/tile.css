@@ -1,0 +1,15 @@
+.tictactoe-tile{
+    color: currentColor;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.x-hover:hover::after{
+    content: "X";
+    opacity: 0.4;
+}
+.o-hover:hover::after{
+    content: "O";
+    opacity: 0.4;
+}
