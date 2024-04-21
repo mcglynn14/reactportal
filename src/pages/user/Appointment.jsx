@@ -5,7 +5,7 @@ import Hero from '../../components/Hero';
 import Userinformation from '../../components/Userinformation';
 import Gcwhicon from '../../components/Gcwhicon';
 import Footer from '../../components/Footer';
-// import { format } from 'date-fns'; // Import format function for date formatting
+import { format } from 'date-fns'; // Import format function for date formatting
 import './appointment.css';
 
 function Appointment() {
@@ -24,8 +24,8 @@ function Appointment() {
       </header>
       <Hero title="Appointment" />
       <section className="appointment">
-        <div>
-          <img src={`/img/department/${user.department_id.img_one}`} alt={`${user.department_id.name} department details`} />
+        <div className="flex content-center justify-center">
+          <img src={`assets/img/department/${user.department_id.img_one}`} alt={`${user.department_id.name} department details`} />
         </div>
         <div className="mb-6">
           <p>Patient Number: {user.patient_number}</p>

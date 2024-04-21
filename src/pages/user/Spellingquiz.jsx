@@ -6,7 +6,10 @@ import Userinformation from '../../components/Userinformation';
 import './spellingquiz.css';
 
 const Spellingquiz = () => {
+    // Fetch user information
     const userData = Userinformation();  
+
+    // Function to calculate age based on date of birth
     const calculateAge = (dob) => {
         if (!dob) return null;
         const birthDate = new Date(dob);
@@ -15,7 +18,10 @@ const Spellingquiz = () => {
         return userAge;
     };
 
+    // Calculate user's age
     const userAge = userData ? calculateAge(userData.dob) : null; // Add conditional check here
+
+    // State variables
     const [isLoading, setIsLoading] = useState(false);
     const [quiz, setQuiz] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -23,6 +29,7 @@ const Spellingquiz = () => {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
 
+    // Fetch user data from API
     useEffect(() => {
         setIsLoading(true);
 
@@ -50,6 +57,7 @@ const Spellingquiz = () => {
         fetchUserData();
     }, []);
 
+    // Generate quiz based on user's age
     useEffect(() => {
         let newQuiz = [];
 
@@ -90,12 +98,14 @@ const Spellingquiz = () => {
         }
     }, [userAge]);
 
+    // Handle input change for each quiz question
     const handleInputChange = (index, event) => {
         const newAnswers = [...answers];
         newAnswers[index] = event.target.value;
         setAnswers(newAnswers);
     };
 
+    // Handle quiz submission
     const handleSubmit = () => {
         let newScore = 0;
         const newFeedbacks = feedbacks.map((_, index) => {
@@ -111,10 +121,12 @@ const Spellingquiz = () => {
         setScore(newScore);
     };
 
+    // Render loading state
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
+    // Render quiz component
     return (
         <>
             <header className="">

@@ -6,8 +6,11 @@ import Userinformation from '../../components/Userinformation';
 import './mathquiz.css';
 
 const Mathquiz = () => {
+    // Fetch user information
     const userData = Userinformation();  
     const userDOB = userData ? userData.dob : null; // Add conditional check here
+
+    // State variables
     const [isLoading, setIsLoading] = useState(false);
     const [quiz, setQuiz] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -15,6 +18,7 @@ const Mathquiz = () => {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
 
+    // Fetch user data on component mount
     useEffect(() => {
         setIsLoading(true);
 
@@ -32,7 +36,7 @@ const Mathquiz = () => {
                 });
                 const userData = await response.json();
                 console.log('Fetched user data:', userData);
-                setUserDOB(userData.dob);
+                setUserDOB(userData.dob); // Update userDOB state
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -43,9 +47,11 @@ const Mathquiz = () => {
         fetchUserData();
     }, []);
 
+    // Generate quiz based on user's date of birth
     useEffect(() => {
         let newQuiz = [];
 
+        // Calculate age based on date of birth
         const calculateAge = (dob) => {
             const birthDate = new Date(dob);
             const today = new Date();
@@ -56,6 +62,7 @@ const Mathquiz = () => {
         if (userDOB) {
             const age = calculateAge(userDOB);
 
+            // Generate quiz questions based on age
             if (age < 10) {
                 newQuiz = [
                     ["Q1: How many legs does a dog have?", "4"],
@@ -84,6 +91,7 @@ const Mathquiz = () => {
                 ];
             }
 
+            // Update state variables
             setQuiz(newQuiz);
             setAnswers(Array(newQuiz.length).fill(''));
             setFeedbacks(Array(newQuiz.length).fill(''));
@@ -92,12 +100,14 @@ const Mathquiz = () => {
         }
     }, [userDOB]);
 
+    // Handle input change for quiz answers
     const handleInputChange = (index, event) => {
         const newAnswers = [...answers];
         newAnswers[index] = event.target.value;
         setAnswers(newAnswers);
     };
 
+    // Handle quiz submission
     const handleSubmit = () => {
         let newScore = 0;
         const newFeedbacks = feedbacks.map((_, index) => {
@@ -113,10 +123,12 @@ const Mathquiz = () => {
         setScore(newScore);
     };
 
+    // Render loading state
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
+    // Render quiz component
     return (
         <>
             <header className="">

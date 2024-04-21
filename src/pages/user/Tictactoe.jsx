@@ -12,15 +12,17 @@ import Gcwhicon from '../../components/Gcwhicon';
 import Footer from '../../components/Footer';
 import './tictactoe.css';
 
+// Create audio objects for game sounds
 const gameOverSound = new Audio(gameOverSoundAsset)
 gameOverSound.volume = 0.2;
 const clickSound = new Audio(clickSoundAsset);
 clickSound.volume = 0.5;
 
-
+// Define player symbols
 const Player_x = 'X';
 const Player_o = 'O';
 
+// Define winning combinations
 const winningCombinations = [
     // rows
     {combo:[0, 1, 2], strikeClass: "strike-row-1"},
@@ -37,6 +39,7 @@ const winningCombinations = [
     {combo:[2, 4, 6], strikeClass: "strike-diagonal-2"},
 ];
 
+// Function to check for a winner
 function checkWinner(tiles, setStrikeClass, setGameState){
     for(const {combo, strikeClass} of winningCombinations){
         const tileValue1 = tiles[combo[0]]
@@ -62,13 +65,13 @@ function checkWinner(tiles, setStrikeClass, setGameState){
 }
 
 const Tictactoe = () => {
+    // State variables
     const [tiles, setTiles] = useState(Array(9).fill(null));
     const [playerTurn, setPlayerTurn] = useState(Player_x)
     const [strikeClass, setStrikeClass] = useState();
     const [gameState, setGameState] = useState(GameState.inProgress)
 
-
-
+    // Event handler for tile click
     const handleTileClick = (index) => {
         if(gameState !== GameState.inProgress){
             return;
@@ -88,6 +91,7 @@ const Tictactoe = () => {
         }
     };
     
+    // Event handler for game reset
     const handleReset = () => {
         setGameState(GameState.inProgress);
         setTiles(Array(9).fill(null));
@@ -95,16 +99,19 @@ const Tictactoe = () => {
         setStrikeClass(null);
     }
 
+    // Check for a winner whenever the tiles state changes
     useEffect(() => {
         checkWinner(tiles, setStrikeClass, setGameState);
     }, [tiles]);
 
+    // Play click sound whenever a tile is clicked
     useEffect(() => {
         if(tiles.some((tile) => tile !== null)){
             clickSound.play();
         }
     }, [tiles]);
 
+    // Play game over sound whenever the game state changes
     useEffect(() => {
         if(gameState !== GameState.inProgress){
             gameOverSound.play();

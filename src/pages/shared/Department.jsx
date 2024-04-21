@@ -9,8 +9,10 @@ import Footer from '../../components/Footer';
 import './department.css';
 
 const Department = () => {
+  // Get user information
   const user = Userinformation();
 
+  // Function to handle going back in history
   const handlegoBack = () => {
     window.history.back();
   };

@@ -7,6 +7,10 @@ import Gcwhicon from "../../components/Gcwhicon";
 import Footer from "../../components/Footer";
 import './dashboard.css';
 
+/**
+ * Parentdashboard component displays the parent's dashboard.
+ * It fetches user information, sets visibility state, and handles the first row finish.
+ */
 const Parentdashboard = () => {
     const user = Userinformation(); // Fetch user information
     const [isVisible, setIsVisible] = useState(false);
@@ -20,6 +24,9 @@ const Parentdashboard = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    /**
+     * Handles the first row finish event.
+     */
     const handleFirstRowFinish = () => {
         setFirstRowFinished(true);
     };

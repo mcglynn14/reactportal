@@ -6,8 +6,11 @@ import Footer from '../../components/Footer';
 import Userinformation from '../../components/Userinformation';
 
 const Hospitalinfo = () => {
+  // Get user information from Userinformation component
   const userData = Userinformation();  
   const userDOB = userData ? userData.dob : null;
+
+  // Set up state variables
   const [isLoading, setIsLoading] = useState(false);
   const [xrayDepartment, setXrayDepartment] = useState('');
   const [mriDepartment, setMriDepartment] = useState('');
@@ -20,12 +23,14 @@ const Hospitalinfo = () => {
   useEffect(() => {
     setIsLoading(true);
 
+    // Check if user date of birth is available
     if (!userDOB) {
-      // console.error('User date of birth not available');
+      // If not available, stop loading and return
       setIsLoading(false);
       return;
     }
 
+    // Function to calculate user's age based on date of birth
     const calculateAge = (dob) => {
       const today = new Date();
       const birthDate = new Date(dob);
@@ -37,8 +42,10 @@ const Hospitalinfo = () => {
       return age;
     };
 
+    // Calculate user's age
     const userAge = calculateAge(userDOB);
 
+    // Set department information based on user's age
     if (userAge >= 14 && userAge <= 18) {
       setXrayDepartment("X-ray Department: Our X-ray department is equipped with advanced imaging technology to provide precise diagnostic images for a wide range of medical conditions. From routine X-rays to more specialized imaging procedures, our experienced radiology team ensures accurate and timely results to aid in diagnosis and treatment planning.");
       setMriDepartment("MRI Department: Our state-of-the-art MRI department is equipped with the latest technology to provide accurate diagnostic imaging. Our experienced radiologists ensure that patients receive the best care and attention during their scans.");
