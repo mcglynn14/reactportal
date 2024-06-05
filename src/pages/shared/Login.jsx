@@ -11,10 +11,10 @@ import Footer from '../../components/Footer';
 // Login component
 const Login = () => {
   // State variables
-  const [patient_number, setPatientNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [parent , setParent] = useState(false);
-  const navigate = useNavigate();
+  const [patient_number, setPatientNumber] = useState(''); // State variable for patient number
+  const [password, setPassword] = useState(''); // State variable for password
+  const [parent , setParent] = useState(false); // State variable for parent status
+  const navigate = useNavigate(); // React Router's navigate function
 
   // Function to handle login
   const handleLogin = async () => {

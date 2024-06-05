@@ -6,7 +6,7 @@ import Userinformation from '../../components/Userinformation';
 import './spellingquiz.css';
 
 const Spellingquiz = () => {
-    // Fetch user information
+    // Fetch user information from Userinformation component
     const userData = Userinformation();  
 
     // Function to calculate age based on date of birth
@@ -18,10 +18,10 @@ const Spellingquiz = () => {
         return userAge;
     };
 
-    // Calculate user's age
-    const userAge = userData ? calculateAge(userData.dob) : null; // Add conditional check here
+    // Calculate user's age using fetched user data
+    const userAge = userData ? calculateAge(userData.dob) : null;
 
-    // State variables
+    // State variables for loading state, quiz questions, answers, feedbacks, score visibility, and score
     const [isLoading, setIsLoading] = useState(false);
     const [quiz, setQuiz] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -29,7 +29,7 @@ const Spellingquiz = () => {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
 
-    // Fetch user data from API
+    // Fetch user data from API on component mount
     useEffect(() => {
         setIsLoading(true);
 
@@ -57,7 +57,7 @@ const Spellingquiz = () => {
         fetchUserData();
     }, []);
 
-    // Generate quiz based on user's age
+    // Generate quiz questions based on user's age
     useEffect(() => {
         let newQuiz = [];
 
@@ -129,7 +129,7 @@ const Spellingquiz = () => {
     // Render quiz component
     return (
         <>
-            <header className="">
+            <header>
                 <Nav />
             </header>
             <Hero title="Spelling Quiz" />

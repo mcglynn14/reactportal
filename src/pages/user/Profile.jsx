@@ -1,44 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import Nav from '../../components/Nav';
-import Hero from '../../components/Hero';
-import Gcwhicon from '../../components/Gcwhicon';
-import Footer from '../../components/Footer';
+import Nav from '../../components/Nav'; // Import the Nav component
+import Hero from '../../components/Hero'; // Import the Hero component
+import Gcwhicon from '../../components/Gcwhicon'; // Import the Gcwhicon component
+import Footer from '../../components/Footer'; // Import the Footer component
 import profileImg from '../../../public/assets/img/profileimg.webp'; // Import default profile image
-import './profile.css';
+import './profile.css'; // Import profile page styles
 import Userinformation from '../../components/Userinformation'; // Import the Userinformation component
 
 /**
  * Represents the user profile page.
- *
  */
 const Profile = () => {
   const user = Userinformation(); // Get user information from the Userinformation component
-  const [dob, setDob] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [parentName, setParentName] = useState(''); // Add parent name state
-  const [departmentName, setDepartmentName] = useState(''); // Add department name state
-  const [Notes , setNotes] = useState(''); // Add notes state
-  const [profileImage, setProfileImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [dob, setDob] = useState(''); // State for date of birth
+  const [fullName, setFullName] = useState(''); // State for full name
+  const [parentName, setParentName] = useState(''); // State for parent name
+  const [departmentName, setDepartmentName] = useState(''); // State for department name
+  const [Notes , setNotes] = useState(''); // State for notes
+  const [profileImage, setProfileImage] = useState(null); // State for profile image
+  const [isLoading, setIsLoading] = useState(false); // State for loading status
 
+  // Effect to set user data when the component mounts or user data changes
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true); // Set loading state to true
 
     if (user) {
-      setDob(formatDate(user.dob) || ''); // Format the date here
-      setFullName(`${user.forename || ''} ${user.surname || ''}`); // Concatenate forename and surname
+      setDob(formatDate(user.dob) || ''); // Format and set date of birth
+      setFullName(`${user.forename || ''} ${user.surname || ''}`); // Concatenate and set full name
       setParentName(user.guardian_name || ''); // Set parent name
       setDepartmentName(user.department_id.name || ''); // Set department name
       setNotes(user.notes || ''); // Set notes
     }
 
-    setIsLoading(false);
+    setIsLoading(false); // Set loading state to false
   }, [user]);
 
   /**
    * Formats the date to "yyyy-MM-dd" format.
-   * @ - The date string to be formatted.
-   *  The formatted date string.
    */
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -50,11 +48,11 @@ const Profile = () => {
 
   /**
    * Handles the profile picture upload event.
-   * The file input change event. for the profile picture upload.
+   * @param {Event} event - The file input change event for the profile picture upload.
    */
   const handleProfilePictureUpload = (event) => {
-    const file = event.target.files[0];
-    setProfileImage(file);
+    const file = event.target.files[0]; // Get the selected file
+    setProfileImage(file); // Set the profile image state
   };
 
   /**
@@ -64,9 +62,9 @@ const Profile = () => {
     // Implement saving logic here (e.g., send data to backend)
     try {
       const formData = new FormData();
-      formData.append('profileImage', profileImage);
-      formData.append('dob', dob);
-      formData.append('fullName', fullName);
+      formData.append('profileImage', profileImage); // Append profile image
+      formData.append('dob', dob); // Append date of birth
+      formData.append('fullName', fullName); // Append full name
 
       // Make a POST request to save the changes
       const response = await fetch('/api/saveProfile', {
@@ -77,20 +75,20 @@ const Profile = () => {
       // Handle response (e.g., show success message)
       console.log('Profile changes saved successfully!');
     } catch (error) {
-      console.error('Error saving profile changes:', error);
+      console.error('Error saving profile changes:', error); // Handle errors
     }
   };
 
   return (
     <>
       <header>
-        <Nav />
+        <Nav /> {/* Render the Nav component */}
       </header>
-      <Hero title="Profile" />
+      <Hero title="Profile" /> {/* Render the Hero component with a title */}
       <section className="profile-section">
         <div className="img-div">
           <img
-            src={profileImage ? URL.createObjectURL(profileImage) : profileImg}
+            src={profileImage ? URL.createObjectURL(profileImage) : profileImg} // Display profile image or default image
             alt="Profile"
             className="profile-img"
           />
@@ -100,7 +98,7 @@ const Profile = () => {
               type="file"
               accept="image/*"
               id="profilePicture"
-              onChange={handleProfilePictureUpload}
+              onChange={handleProfilePictureUpload} // Handle profile picture upload
               style={{ display: 'none' }}
             />
           </label>
@@ -111,46 +109,53 @@ const Profile = () => {
             className="login-input mb-12 border border-black py-2 px-3"
             type="date"
             id="dob"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-            disabled={isLoading}
+            value={dob} // Bind date of birth state
+            onChange={(e) => setDob(e.target.value)} // Handle date of birth change
+            disabled={isLoading} // Disable input if loading
           />
           <label htmlFor="fullName" className="username-label">Child Full Name</label>
           <input
             className="login-input mb-12 border border-black py-2 px-3"
             type="text"
             id="fullName"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            disabled={isLoading}
+            value={fullName} // Bind full name state
+            onChange={(e) => setFullName(e.target.value)} // Handle full name change
+            disabled={isLoading} // Disable input if loading
           />
-          <label htmlFor="fullName" className="username-label">Parent name</label>
+          <label htmlFor="parentName" className="username-label">Parent Name</label>
           <input
             className="login-input mb-12 border border-black py-2 px-3"
             type="text"
-            id="fullName"
-            value={parentName}
-            onChange={(e) => setFullName(e.target.value)}
-            disabled={isLoading}
+            id="parentName"
+            value={parentName} // Bind parent name state
+            onChange={(e) => setParentName(e.target.value)} // Handle parent name change
+            disabled={isLoading} // Disable input if loading
           />
-          <label htmlFor="fullName" className="username-label">Department</label>
+          <label htmlFor="departmentName" className="username-label">Department</label>
           <input
             className="login-input mb-12 border border-black py-2 px-3"
             type="text"
-            id="fullName"
-            value={departmentName}
-            onChange={(e) => setFullName(e.target.value)}
-            disabled={isLoading}
+            id="departmentName"
+            value={departmentName} // Bind department name state
+            onChange={(e) => setDepartmentName(e.target.value)} // Handle department name change
+            disabled={isLoading} // Disable input if loading
           />
-           <label htmlFor="fullName" className="username-label">here for notes</label>
-           <label htmlFor="fullName" className="username-label">{Notes}</label>
+          <label htmlFor="notes" className="username-label">Notes</label>
+          <input
+            className="login-input mb-12 border border-black py-2 px-3"
+            type="text"
+            id="notes"
+            value={Notes} // Bind notes state
+            onChange={(e) => setNotes(e.target.value)} // Handle notes change
+            disabled={isLoading} // Disable input if loading
+          />
           <button className="btn save-profile-btn" onClick={handleSaveProfile} disabled={isLoading}>
-            {isLoading ? 'Saving...' : 'Save'}
+            {isLoading ? 'Saving...' : 'Save'} {/* Show 'Saving...' if loading, else show 'Save' */}
           </button>
         </div>
       </section>
-      <Gcwhicon />
-      <Footer />
+      <Gcwhicon /> {/* Render the Gcwhicon component */}
+      <Footer /> {/* Render the Footer component */}
     </>
   );
 };
