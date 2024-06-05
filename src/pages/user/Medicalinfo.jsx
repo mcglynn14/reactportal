@@ -52,9 +52,9 @@ const Medicalinfo = () => {
       <Hero title="Medical Information" />
       <section className="medicalinfo">
         <div>
-          <h2>Medical Information</h2>
+          <h2 className="text-center">Medical Information</h2>
           {/* Display medical information based on user age */}
-          <p>{medicalInfo}</p>
+          <p className="px-5">{medicalInfo}</p>
         </div>
       </section>
       <Gcwhicon />

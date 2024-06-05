@@ -36,6 +36,10 @@ const Dashboardcards = () => {
                         <img src="assets/img/teamimg.webp" alt="" className="card-img" />
                         <p className="card-text">Department</p>
                 </Link>
+                <Link to="/map" className="dashboard-card bg-gcwh-oceanblue">
+                        <img src="assets/img/mapimg.webp" alt="" className="card-img" />
+                        <p className="card-text">Map</p>
+                </Link>
         </section>
     )
 }

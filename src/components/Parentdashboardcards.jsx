@@ -35,6 +35,10 @@ const Dashboardcards = () => {
                         {/* Display a paragraph with the text "Department" */}
                         <p className="card-text">Department</p>
                 </Link>
+                <Link to="/profile" className="dashboard-card bg-gcwh-oceanblue">
+                        <img src="assets/img/profileimg.webp" alt="" className="card-img" />
+                        <p className="card-text">Your profile</p>
+                </Link>
         </section>
     )
 }

@@ -15,6 +15,9 @@ const Profile = () => {
   const user = Userinformation(); // Get user information from the Userinformation component
   const [dob, setDob] = useState('');
   const [fullName, setFullName] = useState('');
+  const [parentName, setParentName] = useState(''); // Add parent name state
+  const [departmentName, setDepartmentName] = useState(''); // Add department name state
+  const [Notes , setNotes] = useState(''); // Add notes state
   const [profileImage, setProfileImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,6 +27,9 @@ const Profile = () => {
     if (user) {
       setDob(formatDate(user.dob) || ''); // Format the date here
       setFullName(`${user.forename || ''} ${user.surname || ''}`); // Concatenate forename and surname
+      setParentName(user.guardian_name || ''); // Set parent name
+      setDepartmentName(user.department_id.name || ''); // Set department name
+      setNotes(user.notes || ''); // Set notes
     }
 
     setIsLoading(false);
@@ -109,7 +115,7 @@ const Profile = () => {
             onChange={(e) => setDob(e.target.value)}
             disabled={isLoading}
           />
-          <label htmlFor="fullName" className="username-label">Full Name</label>
+          <label htmlFor="fullName" className="username-label">Child Full Name</label>
           <input
             className="login-input mb-12 border border-black py-2 px-3"
             type="text"
@@ -118,6 +124,26 @@ const Profile = () => {
             onChange={(e) => setFullName(e.target.value)}
             disabled={isLoading}
           />
+          <label htmlFor="fullName" className="username-label">Parent name</label>
+          <input
+            className="login-input mb-12 border border-black py-2 px-3"
+            type="text"
+            id="fullName"
+            value={parentName}
+            onChange={(e) => setFullName(e.target.value)}
+            disabled={isLoading}
+          />
+          <label htmlFor="fullName" className="username-label">Department</label>
+          <input
+            className="login-input mb-12 border border-black py-2 px-3"
+            type="text"
+            id="fullName"
+            value={departmentName}
+            onChange={(e) => setFullName(e.target.value)}
+            disabled={isLoading}
+          />
+           <label htmlFor="fullName" className="username-label">here for notes</label>
+           <label htmlFor="fullName" className="username-label">{Notes}</label>
           <button className="btn save-profile-btn" onClick={handleSaveProfile} disabled={isLoading}>
             {isLoading ? 'Saving...' : 'Save'}
           </button>

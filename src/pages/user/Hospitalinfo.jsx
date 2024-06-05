@@ -84,13 +84,14 @@ const Hospitalinfo = () => {
       <Hero title="Hospital Information" />
       <section className="hospitalinfo flex justify-center items-center">
         <div className="flex justify-center items-center flex-col">
-          <p className="mb-6 mt-10">{xrayDepartment}</p>
-          <p className="mb-6">{mriDepartment}</p>
-          <p className="mb-6">{clinics}</p>
-          <p className="mb-6">{wards}</p>
-          <p className="mb-6">{playAreas}</p>
-          <p className="mb-6">{surgicalTheatres}</p>
-          <p className="mb-6">{childrensWingMap}</p>
+          <p className="mb-6 mt-10 px-5">{xrayDepartment}</p>
+          <p className="mb-6 px-5">{mriDepartment}</p>
+          <p className="mb-6 px-5">{mriDepartment}</p>
+          <p className="mb-6 px-5">{clinics}</p>
+          <p className="mb-6 px-5">{wards}</p>
+          <p className="mb-6 px-5">{playAreas}</p>
+          <p className="mb-6 px-5">{surgicalTheatres}</p>
+          <p className="mb-6 px-5">{childrensWingMap}</p>
         </div>
       </section>
       <Gcwhicon />
